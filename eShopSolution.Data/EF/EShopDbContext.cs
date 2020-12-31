@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace eShopSolution.Data.EF
 {
-	public class EShopDbContext : IdentityDbContext<AppUser, AppRole, Guid>
+    public class EShopDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public EShopDbContext(DbContextOptions options) : base(options)
         {
