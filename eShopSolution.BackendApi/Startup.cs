@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace eShopSolution.BackendApi
 {
@@ -29,6 +30,13 @@ namespace eShopSolution.BackendApi
 		{
 			// Declare DI 
 			services.AddTransient<IPublicProductService, PublicProductService>();
+
+			// Add SWagger
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
+
+			});
 
 			services.AddDbContext<EShopDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
@@ -54,7 +62,12 @@ namespace eShopSolution.BackendApi
 			app.UseRouting();
 
 			app.UseAuthorization();
+			app.UseSwagger();
 
+			app.UseSwaggerUI(c =>
+			{
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger eShopSolution V1");
+			});
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
