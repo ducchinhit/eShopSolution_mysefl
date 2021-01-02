@@ -10,5 +10,4 @@
     <ProjectReference Include="..\eShopSolution.Data\eShopSolution.Data.csproj" />
     <ProjectReference Include="..\eShopSolution.ViewModels\eShopSolution.ViewModels.csproj" />
   </ItemGroup>
-
 </Project>
