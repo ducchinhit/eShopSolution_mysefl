@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace eShopSolution.AdminApp.Controllers
 {
-	[Authorize]
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
 		private readonly ILogger<HomeController> _logger;
 
@@ -22,8 +21,7 @@ namespace eShopSolution.AdminApp.Controllers
 
 		public IActionResult Index()
 		{
-			var userName = User.Identity.Name;
-
+			var user = User.Identity.Name;
 			return View();
 		}
 
